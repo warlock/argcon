@@ -1,0 +1,28 @@
+{
+  "name": "argcon",
+  "version": "0.0.1",
+  "description": "Control your command line arguments for Node.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warlock/argcon.git"
+  },
+  "keywords": [
+    "console",
+    "parser",
+    "option",
+    "command",
+    "arguments",
+    "argv",
+    "shell"
+    "javascript",
+    "tools",
+    "utils"
+  ],
+  "author": "Josep Subils Rigau <josep@spellbook.io> (http://spellbook.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/warlock/argcon/issues"
+  },
+  "homepage": "http://www.spellbook.io",
+}
