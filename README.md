@@ -2,9 +2,14 @@ ARGCON
 ===
 > Control your command line arguments for Node.js
 
+## Install:
+```sh
+npm install argcon
+```
+
 ## Import:
 ```javascript
-var arg = require('termarg')
+var arg = require('argcon')
 ```
 
 ## Multiple arguments combinations
