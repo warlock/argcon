@@ -14,7 +14,7 @@
     "command",
     "arguments",
     "argv",
-    "shell"
+    "shell",
     "javascript",
     "tools",
     "utils"
