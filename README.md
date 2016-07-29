@@ -40,7 +40,106 @@ node program.js a c
 -> IN 3
 ```
 
-## Variable arguments
+## Multiple arguments combinations:
+```javascript
+arg.on('a', function (res) {
+	console.log('IN 1')
+})
+
+arg.on(['a', 'b'], function (res) {
+	console.log('IN 2')
+})
+
+arg.on(function () {
+	console.log('IN 3')
+})
+```
+
+```sh
+node program.js a
+-> IN 1
+-> IN 3
+
+node program.js a b
+-> IN 1
+-> IN 2
+-> IN 3
+
+node program.js a c
+-> IN 1
+-> IN 3
+```
+
+## Alone function:
+```javascript
+arg.on('a', function (res) {
+	console.log('IN 1')
+})
+
+arg.on(['a', 'b'], function (res) {
+	console.log('IN 2')
+})
+
+arg.alone(function () {
+	console.log('ALONE')
+})
+```
+
+```sh
+node program.js a
+-> IN 1
+
+node program.js
+-> ALONE
+
+node program.js a b
+-> IN 1
+-> IN 2
+```
+
+## Alone function not work with empty 'on'.
+```javascript
+arg.on('a', function (res) {
+	console.log('IN 1')
+})
+
+arg.on(function (res) {
+	console.log('IN 2')
+})
+
+arg.alone(function () {
+	console.log('ALONE')
+})
+```
+
+```sh
+node program.js a
+-> IN 1
+-> IN 2
+
+node program.js
+-> IN 2
+```
+
+## Alone function not work with empty 'on'.
+```javascript
+arg.on(function () {
+	console.log('IN 1')
+})
+
+arg.alone(function () {
+	console.log('ALONE');
+})
+```
+
+```sh
+node program.js a
+-> IN 1
+
+node program.js
+-> IN 1
+
+## Variable arguments:
 ```javascript
 arg.on('hello', function (res) {
 	console.log('Hello ' + res[1])
