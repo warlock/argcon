@@ -1,6 +1,6 @@
 {
   "name": "argcon",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Control your command line arguments for Node.js",
   "main": "index.js",
   "repository": {

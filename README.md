@@ -138,6 +138,7 @@ node program.js a
 
 node program.js
 -> IN 1
+```
 
 ## Variable arguments:
 ```javascript
