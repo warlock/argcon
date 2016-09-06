@@ -28,6 +28,7 @@ module.exports = {
 		}
 	},
 	alone : function (callback) {
-		if (this.ch) callback();
+		var res = process.argv.slice(2)
+		if (this.ch) callback(res);
 	}
 }
