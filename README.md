@@ -9,21 +9,21 @@ npm install argcon
 
 ## Import:
 ```javascript
-var arg = require('argcon')
+const arg = require('argcon')
 ```
 
 ## Multiple arguments combinations
 ```javascript
-arg.on('a', function (res) {
-	console.log('IN 1')
+arg.on('a', res => {
+  console.log('IN 1')
 })
 
-arg.on(['a', 'b'], function (res) {
-	console.log('IN 2')
+arg.on(['a', 'b'], res => {
+  console.log('IN 2')
 })
 
-arg.on(['a', 'c'], function (res) {
-	console.log('IN 3')
+arg.on(['a', 'c'], res => {
+  console.log('IN 3')
 })
 ```
 
@@ -42,16 +42,16 @@ node program.js a c
 
 ## Multiple arguments combinations:
 ```javascript
-arg.on('a', function (res) {
-	console.log('IN 1')
+arg.on('a', res => {
+  console.log('IN 1')
 })
 
-arg.on(['a', 'b'], function (res) {
-	console.log('IN 2')
+arg.on(['a', 'b'], res => {
+  console.log('IN 2')
 })
 
-arg.on(function () {
-	console.log('IN 3')
+arg.on(() => {
+  console.log('IN 3')
 })
 ```
 
@@ -72,16 +72,16 @@ node program.js a c
 
 ## Alone function:
 ```javascript
-arg.on('a', function (res) {
-	console.log('IN 1')
+arg.on('a', res => {
+  console.log('IN 1')
 })
 
-arg.on(['a', 'b'], function (res) {
-	console.log('IN 2')
+arg.on(['a', 'b'], res => {
+  console.log('IN 2')
 })
 
-arg.alone(function () {
-	console.log('ALONE')
+arg.alone(() => {
+  console.log('ALONE')
 })
 ```
 
@@ -99,16 +99,16 @@ node program.js a b
 
 ## Alone function not work with empty 'on'.
 ```javascript
-arg.on('a', function (res) {
-	console.log('IN 1')
+arg.on('a', res => {
+  console.log('IN 1')
 })
 
-arg.on(function (res) {
-	console.log('IN 2')
+arg.on(res => {
+  console.log('IN 2')
 })
 
-arg.alone(function () {
-	console.log('ALONE')
+arg.alone(() => {
+  console.log('ALONE')
 })
 ```
 
@@ -123,12 +123,12 @@ node program.js
 
 ## Alone function not work with empty 'on'.
 ```javascript
-arg.on(function () {
-	console.log('IN 1')
+arg.on(() => {
+  console.log('IN 1')
 })
 
-arg.alone(function () {
-	console.log('ALONE');
+arg.alone(() => {
+  console.log('ALONE')
 })
 ```
 
@@ -142,8 +142,8 @@ node program.js
 
 ## Variable arguments:
 ```javascript
-arg.on('hello', function (res) {
-	console.log('Hello ' + res[1])
+arg.on('hello', res => {
+  console.log(`Hello ${res[1]}`)
 })
 ```
 
@@ -154,8 +154,8 @@ node program.js hello super warlock
 
 
 ```javascript
-arg.on(['hello', 'super'], function (res) {
-	console.log('Hi ' + res)
+arg.on(['hello', 'super'], res => {
+  console.log(`Hi ${res}`)
 })
 ```
 ```sh
@@ -168,7 +168,7 @@ All the code here is under MIT license. Which means you could do virtually anyth
 I will appreciate it very much if you keep an attribution where appropriate.
 
 The MIT License (MIT)
-Copyright (c) 2015 Josep Subils Rigau (josep@spellbook.io)
+Copyright (c) 2015 Josep Subils (js@js.gl)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
