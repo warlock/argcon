@@ -1,10 +1,10 @@
 ARGCON
 ===
-> Control your command line arguments for Node.js
+> Control your command line arguments in Node.js
 
 ## Install:
 ```sh
-npm install argcon
+npm install argcon -S
 ```
 
 ## Import:
