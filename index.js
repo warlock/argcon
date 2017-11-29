@@ -1,34 +1,25 @@
+/* eslint no-invalid-this: 0 */
 module.exports = {
-  ch: true,
-  on: (arg, callback) => {
-    if (typeof arg === 'function') {
-      this.ch = false
-      arg()
-    } else {
-      var res = process.argv.slice(2)
-      if (Array.isArray(arg)) {
-        var check = true
-        for (var i = 0; i < arg.length; i++) {
-          if (check) {
-            if (arg[i] !== res[i]) check = false
-          }
+  data: {},
+  get: query => {
+    if (query !== undefined && query[0].indexOf('-') > -1) {
+      console.log('primer element te flag')
+      var key = ''
+      query.forEach((el, index) => {
+        if (index % 2 === 0 && el.indexOf('-') > -1) key = el
+        else {
+          if (this.data[key] === undefined) this.data[key] = el
+          else this.data.alone = el
         }
-        res = res.slice(arg.length)
-        if (check) {
-          this.ch = false
-          callback(res)
-        }
-      } else {
-        if (res[0] === arg) {
-          this.ch = false
-          res = res.slice(1)
-          callback(res)
-        }
-      }
+      })
     }
+    console.log(JSON.stringify(this.data))
   },
-  alone: callback => {
-    const res = process.argv.slice(2)
-    if (this.ch) callback(res)
+  on: (flag, callback) => {
+    if (callback !== undefined &&  typeof flag === 'function' && this.data.alone !== undefined) flag(this.data.alone) 
+    if (flag !== undefined && typeof callback === 'function') {
+      if (this.data[flag] !== undefined) callback(this.data[flag])
+      else callback()
+    }
   }
 }

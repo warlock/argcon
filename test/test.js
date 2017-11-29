@@ -1,5 +1,3 @@
 const arg = require('../index.js')
 
-arg.alone(res => {
-  console.log('IN 1: ' + res)
-})
+arg.get(['-a', 'b', '-c', 'd', 'e'])
