@@ -12,155 +12,46 @@ npm install argcon -S
 const arg = require('argcon')
 ```
 
-## Multiple arguments combinations
+## Alone arguments
 ```javascript
-arg.on('a', res => {
-  console.log('IN 1')
-})
-
-arg.on(['a', 'b'], res => {
-  console.log('IN 2')
-})
-
-arg.on(['a', 'c'], res => {
-  console.log('IN 3')
-})
-```
-
-```sh
-node program.js a
--> IN 1
-
-node program.js a b
--> IN 1
--> IN 2
-
-node program.js a c
--> IN 1
--> IN 3
-```
-
-## Multiple arguments combinations:
-```javascript
-arg.on('a', res => {
-  console.log('IN 1')
-})
-
-arg.on(['a', 'b'], res => {
-  console.log('IN 2')
-})
-
-arg.on(() => {
-  console.log('IN 3')
-})
-```
-
-```sh
-node program.js a
--> IN 1
--> IN 3
-
-node program.js a b
--> IN 1
--> IN 2
--> IN 3
-
-node program.js a c
--> IN 1
--> IN 3
-```
-
-## Alone function:
-```javascript
-arg.on('a', res => {
-  console.log('IN 1')
-})
-
-arg.on(['a', 'b'], res => {
-  console.log('IN 2')
-})
-
-arg.alone(() => {
-  console.log('ALONE')
-})
-```
-
-```sh
-node program.js a
--> IN 1
-
-node program.js
--> ALONE
-
-node program.js a b
--> IN 1
--> IN 2
-```
-
-## Alone function not work with empty 'on'.
-```javascript
-arg.on('a', res => {
-  console.log('IN 1')
+arg.on('-a', res => {
+  if (res) console.log(`Response -a: ${res}`)
 })
 
 arg.on(res => {
-  console.log('IN 2')
-})
-
-arg.alone(() => {
-  console.log('ALONE')
+  console.log(`Response alone: ${JSON.stringify(res)}`)
 })
 ```
 
 ```sh
-node program.js a
--> IN 1
--> IN 2
-
-node program.js
--> IN 2
+$ node test.js alone
+-> res alone: ["/usr/bin/node","/home/argcon/test.js","alone"]
 ```
 
-## Alone function not work with empty 'on'.
+## Multiple arguments
 ```javascript
-arg.on(() => {
-  console.log('IN 1')
+arg.on('-a', res => {
+  if (res) console.log(`Response -a: ${res}`)
 })
 
-arg.alone(() => {
-  console.log('ALONE')
+arg.on('-b', res => {
+  if (res) console.log(`Response -b: ${res}`)
 })
-```
 
-```sh
-node program.js a
--> IN 1
+arg.on('-c', res => {
+  if (res) console.log(`Response -c: ${res}`)
+})
 
-node program.js
--> IN 1
-```
-
-## Variable arguments:
-```javascript
-arg.on('hello', res => {
-  console.log(`Hello ${res[1]}`)
+arg.on(res => {
+  console.log(`Response alone: ${JSON.stringify(res)}`)
 })
 ```
 
 ```sh
-node program.js hello super warlock
--> Hello warlock
-```
-
-
-```javascript
-arg.on(['hello', 'super'], res => {
-  console.log(`Hi ${res}`)
-})
-```
-```sh
-node program.js hello super warlock
--> Hi warlock
+$ node test.js -a AAA -b BBB c -d
+Response -a: AAA
+Response -b: BBB
+Response alone: ["/usr/bin/node","/home/argcon/test.js","c","-d"]
 ```
 
 ## License

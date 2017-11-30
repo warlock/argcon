@@ -1,34 +1,34 @@
-module.exports = {
-  ch: true,
-  on: (arg, callback) => {
-    if (typeof arg === 'function') {
-      this.ch = false
-      arg()
-    } else {
-      var res = process.argv.slice(2)
-      if (Array.isArray(arg)) {
-        var check = true
-        for (var i = 0; i < arg.length; i++) {
-          if (check) {
-            if (arg[i] !== res[i]) check = false
-          }
-        }
-        res = res.slice(arg.length)
-        if (check) {
-          this.ch = false
-          callback(res)
+var argv = {
+  get: function (query) {
+    argv.data = { alone: [] }
+    var key = 'alone'    
+    query.forEach(function (el) {
+      if (el.indexOf('-') > -1) {
+        if (key === 'alone') key = el
+        else {
+          argv.data.alone.push(key)
+          key = el
         }
       } else {
-        if (res[0] === arg) {
-          this.ch = false
-          res = res.slice(1)
-          callback(res)
+        if (key !== 'alone' && argv.data[key] === undefined) {
+          argv.data[key] = el
+          key = 'alone'
+        } else {
+          key = 'alone'
+          argv.data.alone.push(el)
         }
       }
-    }
+    })
+    if (key !== 'alone') argv.data.alone.push(key)
   },
-  alone: callback => {
-    const res = process.argv.slice(2)
-    if (this.ch) callback(res)
+  on: function (flag, callback) {
+    argv.get(process.argv)
+    if (flag !== undefined && callback === undefined && typeof flag === 'function' && argv.data.alone !== undefined) flag(argv.data.alone) 
+    if (flag !== undefined && callback !== undefined && typeof callback === 'function') {
+      if (argv.data[flag] !== undefined) callback(argv.data[flag])
+      else callback()
+    }
   }
 }
+
+module.exports = argv;
