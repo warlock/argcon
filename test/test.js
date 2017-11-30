@@ -2,15 +2,15 @@
 const arg = require('../index.js')
 
 arg.on('-a', res => {
-  if (res) console.log(`Response -a: ${res}`)
+  console.log(`Response -a: ${res}`)
 })
 
 arg.on('-b', res => {
-  if (res) console.log(`Response -a: ${res}`)
+  console.log(`Response -b: ${res}`)
 })
 
 arg.on('-c', res => {
-  if (res) console.log(`Response -a: ${res}`)
+  console.log(`Response -c: ${res}`)
 })
 
 arg.on(res => {
