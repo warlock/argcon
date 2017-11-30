@@ -26,7 +26,6 @@ var argv = {
     if (flag !== undefined && callback === undefined && typeof flag === 'function' && argv.data.alone !== undefined) flag(argv.data.alone) 
     if (flag !== undefined && callback !== undefined && typeof callback === 'function') {
       if (argv.data[flag] !== undefined) callback(argv.data[flag])
-      else callback()
     }
   }
 }
