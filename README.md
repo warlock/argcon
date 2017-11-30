@@ -15,7 +15,7 @@ const arg = require('argcon')
 ## Alone arguments
 ```javascript
 arg.on('-a', res => {
-  if (res) console.log(`Response -a: ${res}`)
+  console.log(`Response -a: ${res}`)
 })
 
 arg.on(res => {
@@ -31,15 +31,15 @@ $ node test.js alone
 ## Multiple arguments
 ```javascript
 arg.on('-a', res => {
-  if (res) console.log(`Response -a: ${res}`)
+  console.log(`Response -a: ${res}`)
 })
 
 arg.on('-b', res => {
-  if (res) console.log(`Response -b: ${res}`)
+  console.log(`Response -b: ${res}`)
 })
 
 arg.on('-c', res => {
-  if (res) console.log(`Response -c: ${res}`)
+  console.log(`Response -c: ${res}`)
 })
 
 arg.on(res => {
