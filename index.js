@@ -1,25 +1,34 @@
-/* eslint no-invalid-this: 0 */
-module.exports = {
-  data: {},
-  get: query => {
-    if (query !== undefined && query[0].indexOf('-') > -1) {
-      console.log('primer element te flag')
-      var key = ''
-      query.forEach((el, index) => {
-        if (index % 2 === 0 && el.indexOf('-') > -1) key = el
+var argv = {
+  get: function (query) {
+    argv.data = { alone: [] }
+    var key = 'alone'    
+    query.forEach(function (el) {
+      if (el.indexOf('-') > -1) {
+        if (key === 'alone') key = el
         else {
-          if (this.data[key] === undefined) this.data[key] = el
-          else this.data.alone = el
+          argv.data.alone.push(key)
+          key = el
         }
-      })
-    }
-    console.log(JSON.stringify(this.data))
+      } else {
+        if (key !== 'alone' && argv.data[key] === undefined) {
+          argv.data[key] = el
+          key = 'alone'
+        } else {
+          key = 'alone'
+          argv.data.alone.push(el)
+        }
+      }
+    })
+    if (key !== 'alone') argv.data.alone.push(key)
   },
-  on: (flag, callback) => {
-    if (callback !== undefined &&  typeof flag === 'function' && this.data.alone !== undefined) flag(this.data.alone) 
-    if (flag !== undefined && typeof callback === 'function') {
-      if (this.data[flag] !== undefined) callback(this.data[flag])
+  on: function (flag, callback) {
+    argv.get(process.argv)
+    if (flag !== undefined && callback === undefined && typeof flag === 'function' && argv.data.alone !== undefined) flag(argv.data.alone) 
+    if (flag !== undefined && callback !== undefined && typeof callback === 'function') {
+      if (argv.data[flag] !== undefined) callback(argv.data[flag])
       else callback()
     }
   }
 }
+
+module.exports = argv;
